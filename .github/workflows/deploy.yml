@@ -43,7 +43,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: _build
-          path: target/release/tasks_api_rs
+          path: target/x86_64-unknown-linux-musl/release/tasks_api_rs
   deploy:
     needs: build
     runs-on: ubuntu-20.04
