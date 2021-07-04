@@ -2,7 +2,7 @@ name: Deploy Actions
 on: [push]
 jobs:
   unit-tests:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     services:
       postgres:
         image: postgres:13.3-alpine
@@ -31,20 +31,21 @@ jobs:
       - run: cargo test
   build:
     needs: unit-tests
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-      - run: cargo build --release
+          target: x86_64-unknown-linux-musl
+      - run: cargo build --release --target x86_64-unknown-linux-musl
       - uses: actions/upload-artifact@v2
         with:
           name: _build
           path: target/release/tasks_api_rs
   deploy:
     needs: build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
