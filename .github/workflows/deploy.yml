@@ -42,3 +42,25 @@ jobs:
         with:
           name: tasks_api_rs
           path: target/release/tasks_api_rs
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+      - uses: burnett01/rsync-deployment@4.1
+        with:
+          switches: -avz --delete
+          path: tasks_api_rs
+          remote_path: /srv/api/tasks_api_rs
+          remote_host: howgood.me
+          remote_user: www
+          remote_key: ${{ secrets.DEPLOY_KEY }}
+      - uses: burnett01/rsync-deployment@4.1
+        with:
+          switches: -avzr --delete
+          path: migrations/
+          remote_path: /srv/api/migrations/
+          remote_host: howgood.me
+          remote_user: www
+          remote_key: ${{ secrets.DEPLOY_KEY }}
