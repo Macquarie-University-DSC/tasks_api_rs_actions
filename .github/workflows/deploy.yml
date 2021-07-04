@@ -48,10 +48,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
+        with:
+          name: _build
       - uses: Burnett01/rsync-deployments@4.1
         with:
           switches: -avz --delete
-          path: _build/tasks_api_rs
+          path: tasks_api_rs
           remote_path: /srv/api/tasks_api_rs
           remote_host: howgood.me
           remote_user: www
