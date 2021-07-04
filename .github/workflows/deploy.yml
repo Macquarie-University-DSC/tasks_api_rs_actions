@@ -29,3 +29,16 @@ jobs:
       - run: cargo sqlx migrate run
       - run: cargo clippy
       - run: cargo test
+  build:
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolcahin: stable
+      - run: cargo build --release
+      - uses: actions/upload-artifact@v2
+        with:
+          name: tasks_api_rs
+          path: target/release/tasks_api_rs
