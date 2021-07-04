@@ -1,0 +1,196 @@
+{
+  "db": "PostgreSQL",
+  "1e339e959f8d2cdac13b3e2b452d2f718c0fd6cf6202d5c9139fb1afda123d29": {
+    "query": "DELETE FROM tasks WHERE id = $1",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      },
+      "nullable": []
+    }
+  },
+  "2c936aad5177acbcf004a93fd56fe52630431432bfa2bda9c16131fcd210e4ee": {
+    "query": "\n            INSERT INTO tasks (name, description, due_date, is_complete)\n                VALUES ($1, $2, $3, $4)\n                RETURNING id, name, description, due_date, is_complete\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "description",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "due_date",
+          "type_info": "Int8"
+        },
+        {
+          "ordinal": 4,
+          "name": "is_complete",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Varchar",
+          "Varchar",
+          "Int8",
+          "Bool"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ]
+    }
+  },
+  "4f28c9855a87500c39fc4e88308b16b87bf12743e25be5d1707c07edd8d94dfd": {
+    "query": "SELECT * FROM tasks WHERE id = $1",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "description",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "due_date",
+          "type_info": "Int8"
+        },
+        {
+          "ordinal": 4,
+          "name": "is_complete",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ]
+    }
+  },
+  "6022fa294b0f8427ca8824129afe34a9b84d59ce36bdb7d0a52c28c2bb6f00ff": {
+    "query": "\n            UPDATE tasks\n                SET name = $2, description = $3, due_date = $4, is_complete = $5\n                WHERE id = $1\n                RETURNING id, name, description, due_date, is_complete\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "description",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "due_date",
+          "type_info": "Int8"
+        },
+        {
+          "ordinal": 4,
+          "name": "is_complete",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Varchar",
+          "Varchar",
+          "Int8",
+          "Bool"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ]
+    }
+  },
+  "962610002ca8baab7b5d5e3e722dba23d4822aff9c9c3e528985631027b19c55": {
+    "query": "SELECT * FROM tasks",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "description",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "due_date",
+          "type_info": "Int8"
+        },
+        {
+          "ordinal": 4,
+          "name": "is_complete",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": []
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ]
+    }
+  }
+}

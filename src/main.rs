@@ -10,6 +10,9 @@ mod errors;
 mod handlers;
 mod model;
 
+#[cfg(test)]
+mod tests;
+
 use errors::{ClientError, ErrorCodes};
 
 #[actix_web::main]

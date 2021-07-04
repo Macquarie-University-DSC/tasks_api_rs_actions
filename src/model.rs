@@ -22,6 +22,83 @@ pub struct NewTask {
 }
 
 impl Task {
+    #[cfg(test)]
+    pub fn create_test_data() -> Vec<NewTask> {
+        vec![
+            NewTask {
+                name: "Test Task 1".to_string(),
+                description: "Test Task 1 description".to_string(),
+                due_date: None,
+                is_complete: false,
+            },
+            NewTask {
+                name: "Test Task 2".to_string(),
+                description: "Test Task 2 description".to_string(),
+                due_date: None,
+                is_complete: true,
+            },
+            NewTask {
+                name: "Test Task 3".to_string(),
+                description: "Test Task 3 description".to_string(),
+                due_date: Some(1625443200000),
+                is_complete: false,
+            },
+            NewTask {
+                name: "Test Task 4".to_string(),
+                description: "Test Task 4 description".to_string(),
+                due_date: Some(1625443200000),
+                is_complete: true,
+            },
+            NewTask {
+                name: "Test Task 5".to_string(),
+                description: "Test Task 5 description".to_string(),
+                due_date: Some(1625443200000),
+                is_complete: true,
+            }
+        ]
+    }
+
+    #[cfg(test)]
+    pub fn create_result_data() -> Vec<Task> {
+        vec![
+            Task {
+                id: 1,
+                name: "Test Task 1".to_string(),
+                description: "Test Task 1 description".to_string(),
+                due_date: None,
+                is_complete: false,
+            },
+            Task {
+                id: 2,
+                name: "Test Task 2".to_string(),
+                description: "Test Task 2 description".to_string(),
+                due_date: None,
+                is_complete: true,
+            },
+            Task {
+                id: 3,
+                name: "Test Task 3".to_string(),
+                description: "Test Task 3 description".to_string(),
+                due_date: Some(1625443200000),
+                is_complete: false,
+            },
+            Task {
+                id: 4,
+                name: "Test Task 4".to_string(),
+                description: "Test Task 4 description".to_string(),
+                due_date: Some(1625443200000),
+                is_complete: true,
+            },
+            Task {
+                id: 5,
+                name: "Test Task 5".to_string(),
+                description: "Test Task 5 description".to_string(),
+                due_date: Some(1625443200000),
+                is_complete: true,
+            }
+        ]
+    }
+
     pub async fn create(task: &NewTask, pool: &PgPool) -> Result<Task> {
         let result = sqlx::query_as!(
             Task,
