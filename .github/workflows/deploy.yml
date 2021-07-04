@@ -40,7 +40,7 @@ jobs:
       - run: cargo build --release
       - uses: actions/upload-artifact@v2
         with:
-          name: tasks_api_rs
+          name: _build
           path: target/release/tasks_api_rs
   deploy:
     needs: build
@@ -52,7 +52,7 @@ jobs:
         with:
           switches: -avz --delete
           path: tasks_api_rs
-          remote_path: /srv/api/tasks_api_rs
+          remote_path: /srv/api/_build/tasks_api_rs
           remote_host: howgood.me
           remote_user: www
           remote_key: ${{ secrets.DEPLOY_KEY }}
