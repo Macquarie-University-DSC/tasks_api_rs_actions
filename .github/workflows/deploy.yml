@@ -17,6 +17,7 @@ jobs:
       DATABASE_URL: postgres://postgres:postgres@localhost/tasks_db_test
     steps:
       - uses: actions/checkout@v2
+      - run: sudo apt-get install musl
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
