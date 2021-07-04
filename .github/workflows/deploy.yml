@@ -21,9 +21,11 @@ jobs:
         with:
           toolchain: stable
           components: clippy
-      - uses: actions-rs/cargo@v1
+      - uses: actions-rs/install@v0.1
         with:
-          command: clippy
-      - uses: actions-rs/cargo@v1
-        with:
-          command: test
+          crate: sqlx-cli
+          version: latest
+          use-tool-cache: true
+      - run: cargo sqlx migrate run
+      - run: cargo clippy
+      - run: cargo test
