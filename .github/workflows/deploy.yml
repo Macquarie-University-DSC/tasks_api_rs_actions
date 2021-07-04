@@ -50,6 +50,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: _build
+      - run: ./perms.sh
       - uses: Burnett01/rsync-deployments@4.1
         with:
           switches: -avz --delete

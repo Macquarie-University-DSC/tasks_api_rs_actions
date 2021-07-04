@@ -1,3 +1,3 @@
 #!/bin/sh
 
-chcon 
+chmod 755 tasks_api_rs
