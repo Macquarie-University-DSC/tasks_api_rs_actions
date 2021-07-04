@@ -3,8 +3,8 @@ use std::path::Path;
 
 use crate::model::*;
 use anyhow::Result;
-use sqlx::PgPool;
 use sqlx::migrate::Migrator;
+use sqlx::PgPool;
 
 #[async_std::test]
 async fn database_tests() -> Result<()> {
@@ -18,7 +18,7 @@ async fn database_tests() -> Result<()> {
 
     for (test_task, expected_task) in tasks_to_test.iter().zip(expected.iter()) {
         let result = Task::create(&test_task, &pool).await?;
-        
+
         assert_eq!(result, *expected_task);
     }
 

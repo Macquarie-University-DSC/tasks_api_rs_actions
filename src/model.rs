@@ -54,7 +54,7 @@ impl Task {
                 description: "Test Task 5 description".to_string(),
                 due_date: Some(1625443200000),
                 is_complete: true,
-            }
+            },
         ]
     }
 
@@ -95,7 +95,7 @@ impl Task {
                 description: "Test Task 5 description".to_string(),
                 due_date: Some(1625443200000),
                 is_complete: true,
-            }
+            },
         ]
     }
 
