@@ -1,6 +1,7 @@
 use std::env;
 use std::path::Path;
 
+use actix_cors::Cors;
 use actix_web::{error::JsonPayloadError, middleware::Logger, web, App, HttpServer};
 use anyhow::Result;
 use log::info;
@@ -36,8 +37,11 @@ async fn main() -> Result<()> {
 
     // Starting server
     HttpServer::new(move || {
+        let cors = Cors::default().allow_any_origin();
+
         App::new()
             .wrap(Logger::default())
+            .wrap(cors)
             .data(db_pool.clone())
             .app_data(web::JsonConfig::default().error_handler(|err, _req| {
                 let msg = match err {
